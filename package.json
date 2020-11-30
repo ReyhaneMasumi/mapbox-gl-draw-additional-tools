@@ -18,7 +18,10 @@
         "mapbox-gl-draw",
         "geojson"
     ],
-    "author": "Reyhane Masumi/Mohammad H. Sattarian",
+    "author": "Reyhane Masumi",
+    "contributors": [
+        "Mohammad H. Sattarian"
+    ],
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/ReyhaneMasumi/mapbox-gl-draw-additional-tools/issues"
