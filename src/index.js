@@ -136,7 +136,8 @@ options
 }
 */
 
-export default (draw) =>
+export default (draw, classPrefix) =>
     new extendDrawBar({
         draw,
+        classPrefix,
     });
