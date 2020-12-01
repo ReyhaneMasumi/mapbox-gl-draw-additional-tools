@@ -54,7 +54,7 @@ function App() {
         map.once('load', () => {
             map.resize();
             map.addControl(draw, 'top-right');
-            map.addControl(additionalTools(draw), 'top-right');
+            map.addControl(additionalTools(draw, 'custom-prefix'), 'top-right');
             draw.set({
                 type: 'FeatureCollection',
                 features: [

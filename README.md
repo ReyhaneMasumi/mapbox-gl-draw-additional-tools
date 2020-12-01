@@ -50,6 +50,9 @@ const draw = new MapboxDraw({
 });
 map.addControl(draw);
 map.addControl(additionalTools(draw), 'top-right');
+// or add a class prefix for styling buttons
+// e.g. custom-tools-union, custom-tools-buffer, ...
+map.addControl(additionalTools(draw, 'custom-tools'), 'top-right');
 ```
 
 ## [Example](https://github.com/ReyhaneMasumi/mapbox-gl-draw-additional-tools/blob/main/demo/src/App.js)

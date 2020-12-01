@@ -1,6 +1,6 @@
 {
     "name": "mapbox-gl-draw-additional-tools",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "Some additional tools for MapboxGL Draw like Union, Copy, Buffer and ...",
     "main": "dist/index.js",
     "module": "src/index.js",
