@@ -88,31 +88,36 @@ class extendDrawBar {
         this.draw.delete(ids);
         unionPoly.id = ids.join('-');
         this.draw.add(unionPoly);
+        this.draw.changeMode('simple_select', { featureIds: [unionPoly.id] });
     }
 
     bufferFeature() {
         const selectedFeatures = this.draw.getSelected().features;
         if (!selectedFeatures.length) return;
-
-        let main = selectedFeatures[0];
         const bufferOptions = {};
         bufferOptions.units = this.draw.options.bufferUnits || 'kilometers';
         bufferOptions.steps = this.draw.options.bufferSteps || '64';
-        let buffered = Buffer(main, this.draw.options.bufferSize || 500, bufferOptions);
-        buffered.id = main.id + '_buffer';
-        this.draw.add(buffered);
-        this.draw.changeMode('simple_select', { featureIds: [buffered.id] });
+        let ids = [];
+        selectedFeatures.forEach((main) => {
+            let buffered = Buffer(main, this.draw.options.bufferSize || 0.5, bufferOptions);
+            buffered.id = main.id + '_buffer';
+            ids.push(buffered.id);
+            this.draw.add(buffered);
+        });
+        this.draw.changeMode('simple_select', { featureIds: ids });
     }
 
     copyFeature() {
         const selectedFeatures = this.draw.getSelected().features;
         if (!selectedFeatures.length) return;
-
-        let main = selectedFeatures[0];
-        var translatedPoly = transformTranslate(main, 2, 35);
-        translatedPoly.id = `${translatedPoly.id}_copy`;
-        this.draw.add(translatedPoly);
-        this.draw.changeMode('simple_select', { featureIds: [translatedPoly.id] });
+        let ids = [];
+        selectedFeatures.forEach((main) => {
+            var translatedPoly = transformTranslate(main, 2, 35);
+            translatedPoly.id = `${translatedPoly.id}_copy`;
+            ids.push(translatedPoly.id);
+            this.draw.add(translatedPoly);
+        });
+        this.draw.changeMode('simple_select', { featureIds: ids });
     }
 }
 

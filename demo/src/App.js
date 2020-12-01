@@ -45,7 +45,7 @@ function App() {
             modes: {
                 ...MapboxDraw.modes,
             },
-            bufferSize: 500, // Default is 500
+            bufferSize: 0.5, // Default is 500
             bufferUnit: 'kilometers', //Default is kilometers. It can be miles, degrees or kilometers
             bufferSteps: 64, // Default is 64
             userProperties: true,
