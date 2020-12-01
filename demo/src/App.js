@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import mapboxGl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
-import AdditionalTools from 'mapbox-gl-draw-additional-tools';
+import additionalTools from 'mapbox-gl-draw-additional-tools';
 import './App.css';
 
 let map;
@@ -45,13 +45,16 @@ function App() {
             modes: {
                 ...MapboxDraw.modes,
             },
+            bufferSize: 500, // Default is 500
+            bufferUnit: 'kilometers', //Default is kilometers. It can be miles, degrees or kilometers
+            bufferSteps: 64, // Default is 64
             userProperties: true,
         });
 
         map.once('load', () => {
             map.resize();
             map.addControl(draw, 'top-right');
-            map.addControl(AdditionalTools(draw), 'top-right');
+            map.addControl(additionalTools(draw), 'top-right');
             draw.set({
                 type: 'FeatureCollection',
                 features: [

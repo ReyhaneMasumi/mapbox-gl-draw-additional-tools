@@ -1,5 +1,5 @@
-import union from '@turf/union';
-import buffer from '@turf/buffer';
+import Union from '@turf/union';
+import Buffer from '@turf/buffer';
 import transformTranslate from '@turf/transform-translate';
 
 require('./index.css');
@@ -7,9 +7,9 @@ require('./index.css');
 class extendDrawBar {
     constructor(opt) {
         this.draw = opt.draw;
-        this.options = opt.options;
-        this.buttons = opt.buttons || [];
         this.onRemoveOrig = opt.draw.onRemove;
+        const { union, copy, buffer } = this.draw.options;
+        this.initialOptions = { union, copy, buffer };
 
         this.buttons = [
             {
@@ -38,15 +38,19 @@ class extendDrawBar {
         this._container = document.createElement('div');
         this._container.className = 'mapboxgl-ctrl-group mapboxgl-ctrl';
         this.elContainer = this._container;
-        this.buttons.forEach((b) => {
-            this.addButton(b);
-        });
+        this.buttons
+            .filter((button) => this.initialOptions[button.name.toLowerCase()] !== false)
+            .forEach((b) => {
+                this.addButton(b);
+            });
         return this._container;
     }
     onRemove(map) {
-        this.buttons.forEach((b) => {
-            this.removeButton(b);
-        });
+        this.buttons
+            .filter((button) => this.initialOptions[button.name.toLowerCase()] !== false)
+            .forEach((b) => {
+                this.removeButton(b);
+            });
         this.onRemoveOrig(map);
     }
 
@@ -72,13 +76,18 @@ class extendDrawBar {
     unionPolygons() {
         const selectedFeatures = this.draw.getSelected().features;
         if (!selectedFeatures.length) return;
-
-        let unionPoly = union(...selectedFeatures);
-        // let unionPoly = union(features);
+        let unionPoly;
+        try {
+            unionPoly = Union(...this.draw.getSelected().features);
+        } catch (err) {
+            throw new Error(err);
+        }
+        if (unionPoly.geometry.type === 'GeometryCollection')
+            throw new Error('Selected Features must have the same types!');
         let ids = selectedFeatures.map((i) => i.id);
         this.draw.delete(ids);
+        unionPoly.id = ids.join('-');
         this.draw.add(unionPoly);
-        this.draw.changeMode('simple_select', { featureIDs: [unionPoly.id] });
     }
 
     bufferFeature() {
@@ -86,10 +95,13 @@ class extendDrawBar {
         if (!selectedFeatures.length) return;
 
         let main = selectedFeatures[0];
-        let buffered = buffer(main, this.draw.options.bufferSize || 500, { units: 'meters' });
-        buffered.id = main.id + '-buffer';
+        const bufferOptions = {};
+        bufferOptions.units = this.draw.options.bufferUnits || 'kilometers';
+        bufferOptions.steps = this.draw.options.bufferSteps || '64';
+        let buffered = Buffer(main, this.draw.options.bufferSize || 500, bufferOptions);
+        buffered.id = main.id + '_buffer';
         this.draw.add(buffered);
-        this.draw.changeMode('simple_select', { featureIDs: [buffered.id] });
+        this.draw.changeMode('simple_select', { featureIds: [buffered.id] });
     }
 
     copyFeature() {
@@ -98,21 +110,28 @@ class extendDrawBar {
 
         let main = selectedFeatures[0];
         var translatedPoly = transformTranslate(main, 2, 35);
-        // this.draw.add(translatedPoly);
-        // If id had not changed, the main feature will transformTranslate!
-        this.draw.add({
-            id: `copy_of_${translatedPoly.id}`,
-            type: translatedPoly.type,
-            geometry: translatedPoly.geometry,
-            properties: translatedPoly.properties,
-        });
-
-        this.draw.changeMode('simple_select', { featureIDs: [`copy_of_${translatedPoly.id}`] });
+        translatedPoly.id = `${translatedPoly.id}_copy`;
+        this.draw.add(translatedPoly);
+        this.draw.changeMode('simple_select', { featureIds: [translatedPoly.id] });
     }
 }
 
-export default (draw, options) =>
+/*
+options
+------
+
+
+{
+    union: true,
+    copy: true,
+    buffer: true,
+    bufferSize: 500,
+    bufferUnit: 'kilometers',
+    bufferSteps: 64,
+}
+*/
+
+export default (draw) =>
     new extendDrawBar({
         draw,
-        options,
     });

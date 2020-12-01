@@ -4,7 +4,7 @@
 
 # mapbox-gl-draw-additional-tools
 
-A custom mode for [MapboxGL-Draw](https://github.com/mapbox/mapbox-gl-draw) to cut polygons
+Some additional tools for [MapboxGL-Draw](https://github.com/mapbox/mapbox-gl-draw) like Union, Copy, Buffer and ...
 
 ## [DEMO](https://reyhanemasumi.github.io/mapbox-gl-draw-additional-tools/)
 
@@ -27,7 +27,7 @@ or use CDN:
 ```js
 import mapboxGl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import AdditionalTools from 'mapbox-gl-draw-additional-tools';
+import additionalTools from 'mapbox-gl-draw-additional-tools';
 
 const map = new mapboxgl.Map({
     container: 'map', // container id
@@ -41,9 +41,15 @@ const draw = new MapboxDraw({
         ...MapboxDraw.modes,
     },
     userProperties: true,
+    union: true, // Default is true. If set to false, the button does not appear in toolbox
+    copy: true, // Default is true. If set to false, the button does not appear in toolbox
+    buffer: true, // Default is true. If set to false, the button does not appear in toolbox
+    bufferSize: 500, // Default is 500
+    bufferUnit: 'kilometers', //Default is kilometers. It can be miles, degrees or kilometers
+    bufferSteps: 64, // Default is 64
 });
 map.addControl(draw);
-map.addControl(AdditionalTools(draw), 'top-right');
+map.addControl(additionalTools(draw), 'top-right');
 ```
 
 ## [Example](https://github.com/ReyhaneMasumi/mapbox-gl-draw-additional-tools/blob/main/demo/src/App.js)
