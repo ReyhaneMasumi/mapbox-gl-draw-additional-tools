@@ -100,7 +100,7 @@ class extendDrawBar {
         let ids = [];
         selectedFeatures.forEach((main) => {
             let buffered = Buffer(main, this.draw.options.bufferSize || 0.5, bufferOptions);
-            buffered.id = main.id + '_buffer';
+            buffered.id = `${main.id}_buffer_${Math.floor(Math.random() * Math.floor(1000))}`;
             ids.push(buffered.id);
             this.draw.add(buffered);
         });
@@ -113,7 +113,7 @@ class extendDrawBar {
         let ids = [];
         selectedFeatures.forEach((main) => {
             var translatedPoly = transformTranslate(main, 2, 35);
-            translatedPoly.id = `${main.id}_copy`;
+            translatedPoly.id = `${main.id}_copy_${Math.floor(Math.random() * Math.floor(1000))}`;
             ids.push(translatedPoly.id);
             this.draw.add(translatedPoly);
         });
