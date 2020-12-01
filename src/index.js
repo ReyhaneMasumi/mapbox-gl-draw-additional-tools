@@ -113,7 +113,7 @@ class extendDrawBar {
         let ids = [];
         selectedFeatures.forEach((main) => {
             var translatedPoly = transformTranslate(main, 2, 35);
-            translatedPoly.id = `${translatedPoly.id}_copy`;
+            translatedPoly.id = `${main.id}_copy`;
             ids.push(translatedPoly.id);
             this.draw.add(translatedPoly);
         });
