@@ -8,7 +8,7 @@ Some additional tools for [MapboxGL-Draw](https://github.com/mapbox/mapbox-gl-dr
 
 ## [DEMO](https://reyhanemasumi.github.io/mapbox-gl-draw-additional-tools/)
 
-![A Gif showing demo usage](https://github.com/ReyhaneMasumi/mapbox-gl-draw-additional-tools/blob/main/demo/public/demo.gif)
+![A Gif showing demo usage](demo/public/demo.gif)
 
 ## Install
 
