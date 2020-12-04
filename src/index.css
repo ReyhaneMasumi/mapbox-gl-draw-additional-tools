@@ -16,3 +16,15 @@
     background-position: center;
     background-size: 60%;
 }
+.mapbox-gl-draw_length {
+    background-image: url('./img/ruler.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+.mapbox-gl-draw_area {
+    background-image: url('./img/area.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
