@@ -27,7 +27,7 @@ or use CDN:
 ```js
 import mapboxGl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import additionalTools, { measurement, addToolStyle } from 'mapbox-gl-draw-additional-tools';
+import { additionalTools, measurement, addToolStyle } from 'mapbox-gl-draw-additional-tools';
 
 const map = new mapboxgl.Map({
     container: 'map', // container id

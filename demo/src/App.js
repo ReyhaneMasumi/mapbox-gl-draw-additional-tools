@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxGl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
-import additionalTools, { measurement, addToolStyle } from 'mapbox-gl-draw-additional-tools';
+import { additionalTools, measurement, addToolStyle } from 'mapbox-gl-draw-additional-tools';
 import './App.css';
 
 let map;

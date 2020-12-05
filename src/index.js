@@ -12,7 +12,7 @@ let measurement = {
     area: [],
 };
 
-export const addToolStyle = [
+const addToolStyle = [
     ...defaultStyle,
     {
         id: 'gl-draw-line-active-length',
@@ -257,9 +257,10 @@ options
     showArea: true
 }
 */
-export { measurement };
-export default (draw, classPrefix) =>
+const additionalTools = (draw, classPrefix) =>
     new extendDrawBar({
         draw,
         classPrefix,
     });
+
+export { additionalTools, measurement, addToolStyle };
