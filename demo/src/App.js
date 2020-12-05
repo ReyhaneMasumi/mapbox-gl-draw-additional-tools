@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import mapboxGl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
-import additionalTools from 'mapbox-gl-draw-additional-tools';
+import { additionalTools, measurement, addToolStyle } from 'mapbox-gl-draw-additional-tools';
 import './App.css';
 
 let map;
@@ -18,6 +18,7 @@ function App() {
             true
         );
     let mapRef = useRef(null);
+    const [addTool, setAddTool] = useState();
 
     useEffect(() => {
         map = new mapboxGl.Map({
@@ -45,6 +46,7 @@ function App() {
             modes: {
                 ...MapboxDraw.modes,
             },
+            styles: addToolStyle,
             bufferSize: 0.5, // Default is 500
             bufferUnit: 'kilometers', //Default is kilometers. It can be miles, degrees or kilometers
             bufferSteps: 64, // Default is 64
@@ -54,7 +56,7 @@ function App() {
         map.once('load', () => {
             map.resize();
             map.addControl(draw, 'top-right');
-            map.addControl(additionalTools(draw, 'custom-prefix'), 'top-right');
+            setAddTool(map.addControl(additionalTools(draw, 'custom-prefix'), 'top-right'));
             draw.set({
                 type: 'FeatureCollection',
                 features: [
@@ -80,6 +82,17 @@ function App() {
             });
         });
     }, []);
+
+    useEffect(() => {
+        addTool &&
+            document.querySelector('.mapbox-gl-draw_length')?.addEventListener('click', () => {
+                console.log(measurement.length);
+            });
+        addTool &&
+            document.querySelector('.mapbox-gl-draw_area')?.addEventListener('click', () => {
+                console.log(measurement.area);
+            });
+    }, [addTool]);
 
     return (
         <div className="map-wrapper">

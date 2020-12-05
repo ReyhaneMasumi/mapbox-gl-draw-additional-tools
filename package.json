@@ -1,7 +1,7 @@
 {
     "name": "mapbox-gl-draw-additional-tools",
-    "version": "0.2.0",
-    "description": "Some additional tools for MapboxGL Draw like Union, Copy, Buffer and ...",
+    "version": "0.3.0",
+    "description": "Some additional tools for MapboxGL Draw like Union, Copy, Buffer, Length, Area and ...",
     "main": "dist/index.js",
     "module": "src/index.js",
     "scripts": {
@@ -16,7 +16,12 @@
         "mapbox",
         "mapbox-gl",
         "mapbox-gl-draw",
-        "geojson"
+        "geojson",
+        "union",
+        "copy",
+        "buffer",
+        "length",
+        "area"
     ],
     "author": "Reyhane Masumi",
     "contributors": [
