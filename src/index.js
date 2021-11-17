@@ -4,6 +4,7 @@ import Length from '@turf/length';
 import Area from '@turf/area';
 import transformTranslate from '@turf/transform-translate';
 import defaultStyle from '@mapbox/mapbox-gl-draw/src/lib/theme';
+import { events } from "@mapbox/mapbox-gl-draw/src/constants";
 
 require('./index.css');
 
