@@ -4,6 +4,7 @@ import Length from '@turf/length';
 import Area from '@turf/area';
 import transformTranslate from '@turf/transform-translate';
 import defaultStyle from '@mapbox/mapbox-gl-draw/src/lib/theme';
+import { events } from "@mapbox/mapbox-gl-draw/src/constants";
 
 require('./index.css');
 
@@ -111,6 +112,12 @@ class extendDrawBar {
                 classes: ['mapbox-gl-draw_copy', opt.classPrefix ? `${opt.classPrefix}-copy` : null],
             },
             {
+                name: 'Cut',
+                callback: this.cutFeature,
+                title: `Cut tool`,
+                classes: ['mapbox-gl-draw_cut', opt.classPrefix ? `${opt.classPrefix}-cut` : null],
+            },
+            {
                 name: 'Length',
                 callback: this.lengthOfFeature,
                 title: `Length tool`,
@@ -180,6 +187,7 @@ class extendDrawBar {
         this.draw.delete(ids);
         unionPoly.id = ids.join('-');
         this.draw.add(unionPoly);
+        this.fireCreateUnion(unionPoly)
         this.draw.changeMode('simple_select', { featureIds: [unionPoly.id] });
     }
 
@@ -190,12 +198,15 @@ class extendDrawBar {
         bufferOptions.units = this.draw.options.bufferUnits || 'kilometers';
         bufferOptions.steps = this.draw.options.bufferSteps || '64';
         let ids = [];
+        let buffers = [];
         selectedFeatures.forEach((main) => {
             let buffered = Buffer(main, this.draw.options.bufferSize || 0.5, bufferOptions);
             buffered.id = `${main.id}_buffer_${Math.floor(Math.random() * Math.floor(1000))}`;
             ids.push(buffered.id);
+            buffers.push(buffered)
             this.draw.add(buffered);
         });
+        this.fireCreateBuffer(buffers)
         this.draw.changeMode('simple_select', { featureIds: ids });
     }
 
@@ -203,14 +214,34 @@ class extendDrawBar {
         const selectedFeatures = this.draw.getSelected().features;
         if (!selectedFeatures.length) return;
         let ids = [];
+        let translated = [];
         selectedFeatures.forEach((main) => {
             var translatedPoly = transformTranslate(main, 2, 35);
             translatedPoly.id = `${main.id}_copy_${Math.floor(Math.random() * Math.floor(1000))}`;
             ids.push(translatedPoly.id);
-            this.draw.add(translatedPoly);
+            translated.push(translatedPoly);
+            // this.draw.add(translatedPoly);
         });
+        this.fireUpdateCopy(translated)
         this.draw.changeMode('simple_select', { featureIds: ids });
     }
+
+    cutFeature() {
+        const selectedFeatures = this.draw.getSelected().features;
+        if (!selectedFeatures.length) return;
+        let ids = [];
+        let cuts = [];
+        selectedFeatures.forEach((main) => {
+            // var translatedPoly = transformTranslate(main, 2, 35);
+            cutPoly.id = `${main.id}_cut_${Math.floor(Math.random() * Math.floor(1000))}`;
+            ids.push(cutPoly.id);
+            cuts.push(cutPoly);
+            // this.draw.add(translatedPoly);
+        });
+        this.fireUpdateCut(cuts)
+        this.draw.changeMode('simple_select', { featureIds: ids });
+    }
+
     lengthOfFeature() {
         measurement.length = [];
         const selectedFeatures = this.draw.getSelected().features;
@@ -223,6 +254,7 @@ class extendDrawBar {
                 this.draw.setFeatureProperty(main.id, 'length', parseFloat(length).toFixed(4)) &&
                 this.draw.setFeatureProperty(main.id, 'length_unit', this.draw.options.lengthUnits || 'kilometers');
         });
+        this.fireUpdateMeasurement(measurement.length)
     }
     areaOfPolygon() {
         measurement.area = [];
@@ -234,6 +266,39 @@ class extendDrawBar {
             (this.draw.options.showArea || true) &&
                 this.draw.setFeatureProperty(main.id, 'has_area', 'true') &&
                 this.draw.setFeatureProperty(main.id, 'area', parseFloat(area).toFixed(4));
+        });
+        this.fireUpdateMeasurement(measurement.area
+            )
+    }
+
+    fireCreateUnion(newF) {
+        this.map.fire(events.CREATE, {
+          action: 'UnionPolygon',
+          features: newF
+        });
+    }
+    fireCreateBuffer(newF) {
+        this.map.fire(events.CREATE, {
+          action: 'Buffer',
+          features: newF
+        });
+    }
+    fireUpdateCopy(newF) {
+        this.map.fire(events.UPDATE, {
+          action: 'Copy',
+          features: newF
+        });
+    }
+    fireUpdateCut(newF) {
+        this.map.fire(events.UPDATE, {
+          action: 'Cut',
+          features: newF
+        });
+    }
+    fireUpdateMeasurement(newF) {
+        this.map.fire(events.UPDATE, {
+          action: 'Measurement',
+          features: newF
         });
     }
 }

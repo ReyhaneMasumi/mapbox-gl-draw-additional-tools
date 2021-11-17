@@ -80,6 +80,8 @@ function App() {
                     },
                 ],
             });
+            map.on('draw.create', function (e) {console.log(e)})
+            map.on('draw.update', function (e) {console.log(e)})
         });
     }, []);
 
