@@ -4,7 +4,7 @@
 
 # mapbox-gl-draw-additional-tools
 
-Some additional tools for [MapboxGL-Draw](https://github.com/mapbox/mapbox-gl-draw) like Union, Copy, Buffer, Length, Area and ...
+Some additional tools for [MapboxGL-Draw](https://github.com/mapbox/mapbox-gl-draw) like Union, Copy, Cut, Buffer, Length, Area and ...
 
 ## [DEMO](https://reyhanemasumi.github.io/mapbox-gl-draw-additional-tools/)
 
