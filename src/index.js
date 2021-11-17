@@ -205,7 +205,7 @@ class extendDrawBar {
             buffers.push(buffered)
             this.draw.add(buffered);
         });
-        fireCreateBuffer(buffers)
+        this.fireCreateBuffer(buffers)
         this.draw.changeMode('simple_select', { featureIds: ids });
     }
 
@@ -221,7 +221,7 @@ class extendDrawBar {
             translated.push(translatedPoly);
             // this.draw.add(translatedPoly);
         });
-        fireUpdateCopy(translated)
+        this.fireUpdateCopy(translated)
         this.draw.changeMode('simple_select', { featureIds: ids });
     }
 
@@ -237,7 +237,7 @@ class extendDrawBar {
             cuts.push(cutPoly);
             // this.draw.add(translatedPoly);
         });
-        fireUpdateCut(cuts)
+        this.fireUpdateCut(cuts)
         this.draw.changeMode('simple_select', { featureIds: ids });
     }
 
@@ -253,7 +253,7 @@ class extendDrawBar {
                 this.draw.setFeatureProperty(main.id, 'length', parseFloat(length).toFixed(4)) &&
                 this.draw.setFeatureProperty(main.id, 'length_unit', this.draw.options.lengthUnits || 'kilometers');
         });
-        fireUpdateMeasurement(measurement.length)
+        this.fireUpdateMeasurement(measurement.length)
     }
     areaOfPolygon() {
         measurement.area = [];
@@ -266,7 +266,7 @@ class extendDrawBar {
                 this.draw.setFeatureProperty(main.id, 'has_area', 'true') &&
                 this.draw.setFeatureProperty(main.id, 'area', parseFloat(area).toFixed(4));
         });
-        fireUpdateMeasurement(measurement.area
+        this.fireUpdateMeasurement(measurement.area
             )
     }
 
