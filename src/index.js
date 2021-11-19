@@ -232,7 +232,7 @@ class extendDrawBar {
         let ids = [];
         let cuts = [];
         selectedFeatures.forEach((main) => {
-            // var translatedPoly = transformTranslate(main, 2, 35);
+            var cutPoly = transformTranslate(main, 2, 35);
             cutPoly.id = `${main.id}_cut_${Math.floor(Math.random() * Math.floor(1000))}`;
             ids.push(cutPoly.id);
             cuts.push(cutPoly);
