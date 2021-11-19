@@ -254,7 +254,7 @@ class extendDrawBar {
                 this.draw.setFeatureProperty(main.id, 'length', parseFloat(length).toFixed(4)) &&
                 this.draw.setFeatureProperty(main.id, 'length_unit', this.draw.options.lengthUnits || 'kilometers');
         });
-        this.fireUpdateMeasurement(measurement.length)
+        this.fireUpdateMeasurement(measurement.length, 'length')
     }
     areaOfPolygon() {
         measurement.area = [];
@@ -267,7 +267,7 @@ class extendDrawBar {
                 this.draw.setFeatureProperty(main.id, 'has_area', 'true') &&
                 this.draw.setFeatureProperty(main.id, 'area', parseFloat(area).toFixed(4));
         });
-        this.fireUpdateMeasurement(measurement.area
+        this.fireUpdateMeasurement(measurement.area, 'area'
             )
     }
 
@@ -295,9 +295,9 @@ class extendDrawBar {
           features: newF
         });
     }
-    fireUpdateMeasurement(newF) {
+    fireUpdateMeasurement(newF, type) {
         this.map.fire(events.UPDATE, {
-          action: 'Measurement',
+          action: 'Measurement-' + type,
           features: newF
         });
     }
