@@ -1,7 +1,7 @@
 {
     "name": "mapbox-gl-draw-additional-tools",
-    "version": "0.4.2",
-    "description": "Some additional tools for MapboxGL Draw like Union, Copy, Cut, Buffer, Length, Area and ...",
+    "version": "0.5.0",
+    "description": "Some additional tools for MapboxGL Draw like Union, Centroid, Polygon to Points, Line to Points, Copy, Cut, Buffer, Length, Area and ...",
     "main": "dist/index.js",
     "module": "src/index.js",
     "scripts": {
