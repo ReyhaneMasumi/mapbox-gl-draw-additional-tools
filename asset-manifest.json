@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/mapbox-gl-draw-additional-tools/static/css/main.eb85c50a.chunk.css",
-    "main.js": "/mapbox-gl-draw-additional-tools/static/js/main.8c67f191.chunk.js",
-    "main.js.map": "/mapbox-gl-draw-additional-tools/static/js/main.8c67f191.chunk.js.map",
-    "runtime-main.js": "/mapbox-gl-draw-additional-tools/static/js/runtime-main.9eda6ca3.js",
-    "runtime-main.js.map": "/mapbox-gl-draw-additional-tools/static/js/runtime-main.9eda6ca3.js.map",
+    "main.css": "/mapbox-gl-draw-additional-tools/static/css/main.cd65b1fe.chunk.css",
+    "main.js": "/mapbox-gl-draw-additional-tools/static/js/main.5a38a086.chunk.js",
+    "main.js.map": "/mapbox-gl-draw-additional-tools/static/js/main.5a38a086.chunk.js.map",
+    "runtime-main.js": "/mapbox-gl-draw-additional-tools/static/js/runtime-main.887eda4a.js",
+    "runtime-main.js.map": "/mapbox-gl-draw-additional-tools/static/js/runtime-main.887eda4a.js.map",
     "static/css/2.dbeb0df7.chunk.css": "/mapbox-gl-draw-additional-tools/static/css/2.dbeb0df7.chunk.css",
-    "static/js/2.b987db79.chunk.js": "/mapbox-gl-draw-additional-tools/static/js/2.b987db79.chunk.js",
-    "static/js/2.b987db79.chunk.js.map": "/mapbox-gl-draw-additional-tools/static/js/2.b987db79.chunk.js.map",
-    "static/js/3.5f8172bb.chunk.js": "/mapbox-gl-draw-additional-tools/static/js/3.5f8172bb.chunk.js",
-    "static/js/3.5f8172bb.chunk.js.map": "/mapbox-gl-draw-additional-tools/static/js/3.5f8172bb.chunk.js.map",
+    "static/js/2.3d602151.chunk.js": "/mapbox-gl-draw-additional-tools/static/js/2.3d602151.chunk.js",
+    "static/js/2.3d602151.chunk.js.map": "/mapbox-gl-draw-additional-tools/static/js/2.3d602151.chunk.js.map",
+    "static/js/3.464c43b3.chunk.js": "/mapbox-gl-draw-additional-tools/static/js/3.464c43b3.chunk.js",
+    "static/js/3.464c43b3.chunk.js.map": "/mapbox-gl-draw-additional-tools/static/js/3.464c43b3.chunk.js.map",
     "index.html": "/mapbox-gl-draw-additional-tools/index.html",
     "static/css/2.dbeb0df7.chunk.css.map": "/mapbox-gl-draw-additional-tools/static/css/2.dbeb0df7.chunk.css.map",
-    "static/css/main.eb85c50a.chunk.css.map": "/mapbox-gl-draw-additional-tools/static/css/main.eb85c50a.chunk.css.map",
-    "static/js/2.b987db79.chunk.js.LICENSE.txt": "/mapbox-gl-draw-additional-tools/static/js/2.b987db79.chunk.js.LICENSE.txt",
+    "static/css/main.cd65b1fe.chunk.css.map": "/mapbox-gl-draw-additional-tools/static/css/main.cd65b1fe.chunk.css.map",
+    "static/js/2.3d602151.chunk.js.LICENSE.txt": "/mapbox-gl-draw-additional-tools/static/js/2.3d602151.chunk.js.LICENSE.txt",
     "static/media/index.css": "/mapbox-gl-draw-additional-tools/static/media/union.2cd460cb.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.9eda6ca3.js",
+    "static/js/runtime-main.887eda4a.js",
     "static/css/2.dbeb0df7.chunk.css",
-    "static/js/2.b987db79.chunk.js",
-    "static/css/main.eb85c50a.chunk.css",
-    "static/js/main.8c67f191.chunk.js"
+    "static/js/2.3d602151.chunk.js",
+    "static/css/main.cd65b1fe.chunk.css",
+    "static/js/main.5a38a086.chunk.js"
   ]
 }
