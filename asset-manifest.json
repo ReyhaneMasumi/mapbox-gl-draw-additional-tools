@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/mapbox-gl-draw-additional-tools/static/css/main.cd65b1fe.chunk.css",
-    "main.js": "/mapbox-gl-draw-additional-tools/static/js/main.5234cd24.chunk.js",
-    "main.js.map": "/mapbox-gl-draw-additional-tools/static/js/main.5234cd24.chunk.js.map",
+    "main.js": "/mapbox-gl-draw-additional-tools/static/js/main.ad746f76.chunk.js",
+    "main.js.map": "/mapbox-gl-draw-additional-tools/static/js/main.ad746f76.chunk.js.map",
     "runtime-main.js": "/mapbox-gl-draw-additional-tools/static/js/runtime-main.9eda6ca3.js",
     "runtime-main.js.map": "/mapbox-gl-draw-additional-tools/static/js/runtime-main.9eda6ca3.js.map",
     "static/css/2.dbeb0df7.chunk.css": "/mapbox-gl-draw-additional-tools/static/css/2.dbeb0df7.chunk.css",
-    "static/js/2.a9839485.chunk.js": "/mapbox-gl-draw-additional-tools/static/js/2.a9839485.chunk.js",
-    "static/js/2.a9839485.chunk.js.map": "/mapbox-gl-draw-additional-tools/static/js/2.a9839485.chunk.js.map",
+    "static/js/2.cd58c7c2.chunk.js": "/mapbox-gl-draw-additional-tools/static/js/2.cd58c7c2.chunk.js",
+    "static/js/2.cd58c7c2.chunk.js.map": "/mapbox-gl-draw-additional-tools/static/js/2.cd58c7c2.chunk.js.map",
     "static/js/3.5f8172bb.chunk.js": "/mapbox-gl-draw-additional-tools/static/js/3.5f8172bb.chunk.js",
     "static/js/3.5f8172bb.chunk.js.map": "/mapbox-gl-draw-additional-tools/static/js/3.5f8172bb.chunk.js.map",
     "index.html": "/mapbox-gl-draw-additional-tools/index.html",
     "static/css/2.dbeb0df7.chunk.css.map": "/mapbox-gl-draw-additional-tools/static/css/2.dbeb0df7.chunk.css.map",
     "static/css/main.cd65b1fe.chunk.css.map": "/mapbox-gl-draw-additional-tools/static/css/main.cd65b1fe.chunk.css.map",
-    "static/js/2.a9839485.chunk.js.LICENSE.txt": "/mapbox-gl-draw-additional-tools/static/js/2.a9839485.chunk.js.LICENSE.txt",
+    "static/js/2.cd58c7c2.chunk.js.LICENSE.txt": "/mapbox-gl-draw-additional-tools/static/js/2.cd58c7c2.chunk.js.LICENSE.txt",
     "static/media/index.css": "/mapbox-gl-draw-additional-tools/static/media/union.2cd460cb.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.9eda6ca3.js",
     "static/css/2.dbeb0df7.chunk.css",
-    "static/js/2.a9839485.chunk.js",
+    "static/js/2.cd58c7c2.chunk.js",
     "static/css/main.cd65b1fe.chunk.css",
-    "static/js/main.5234cd24.chunk.js"
+    "static/js/main.ad746f76.chunk.js"
   ]
 }
