@@ -216,7 +216,7 @@ class extendDrawBar {
         selectedFeatures.forEach((main) => {
             if(['Point', 'MultiPoint'].includes(main.geometry.type)) return
             console.log(main.geometry)
-            let vertex = meta.CoordAll(main.geometry);
+            let vertex = meta.coordAll(main.geometry);
             console.log(vertex)
             vertex.id = `${main.id}_vertex_${Math.floor(Math.random() * Math.floor(1000))}`;
             ids.push(vertex.id)
