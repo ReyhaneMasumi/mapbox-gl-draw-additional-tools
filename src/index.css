@@ -1,3 +1,9 @@
+.mapbox-gl-draw_centroid {
+    background-image: url('./img/centroid.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
 .mapbox-gl-draw_union {
     background-image: url('./img/union.svg');
     background-repeat: no-repeat;

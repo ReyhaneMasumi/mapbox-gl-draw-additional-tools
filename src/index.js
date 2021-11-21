@@ -2,6 +2,7 @@ import Union from '@turf/union';
 import Buffer from '@turf/buffer';
 import Length from '@turf/length';
 import Area from '@turf/area';
+import Centroid from '@turf/centroid';
 import transformTranslate from '@turf/transform-translate';
 import defaultStyle from '@mapbox/mapbox-gl-draw/src/lib/theme';
 import { events } from "@mapbox/mapbox-gl-draw/src/constants";
@@ -89,10 +90,16 @@ class extendDrawBar {
     constructor(opt) {
         this.draw = opt.draw;
         this.onRemoveOrig = opt.draw.onRemove;
-        const { union, copy, buffer, length, area } = this.draw.options;
-        this.initialOptions = { union, copy, buffer, length, area };
+        const { union, copy, cut, buffer, length, area, centroid } = this.draw.options;
+        this.initialOptions = { union, copy, cut, buffer, length, area, centroid };
 
         this.buttons = [
+            {
+                name: 'Centroid',
+                callback: this.centroidPolygons,
+                title: `Centroid tool`,
+                classes: ['mapbox-gl-draw_centroid', opt.classPrefix ? `${opt.classPrefix}-centroid` : null],
+            },
             {
                 name: 'Union',
                 callback: this.unionPolygons,
@@ -172,6 +179,23 @@ class extendDrawBar {
         opt.elButton.remove();
     }
 
+    centroidPolygons() {
+        const selectedFeatures = this.draw.getSelected().features;
+        if (!selectedFeatures.length) return;
+        let ids = [];
+        let centroids = [];
+        selectedFeatures.forEach((main) => {
+            if(main.geometry.type !== 'Polygon') return
+            let centroid = Centroid(main.geometry);
+            console.log({centroid})
+            centroid.id = `${main.id}_centroid_${Math.floor(Math.random() * Math.floor(1000))}`;
+            ids.push(centroid.id)
+            centroids.push(centroid)
+        })
+        this.fireCreateCentroid(centroids)
+        this.draw.changeMode('simple_select', { featureIds: ids });
+    }
+
     unionPolygons() {
         const selectedFeatures = this.draw.getSelected().features;
         if (!selectedFeatures.length) return;
@@ -204,7 +228,7 @@ class extendDrawBar {
             buffered.id = `${main.id}_buffer_${Math.floor(Math.random() * Math.floor(1000))}`;
             ids.push(buffered.id);
             buffers.push(buffered)
-            this.draw.add(buffered);
+            // this.draw.add(buffered);
         });
         this.fireCreateBuffer(buffers)
         this.draw.changeMode('simple_select', { featureIds: ids });
@@ -271,6 +295,12 @@ class extendDrawBar {
             )
     }
 
+    fireCreateCentroid(newF) {
+        this.map.fire(events.CREATE, {
+          action: 'CentroidPolygon',
+          features: newF
+        });
+    }
     fireCreateUnion(newF) {
         this.map.fire(events.CREATE, {
           action: 'UnionPolygon',
@@ -306,8 +336,6 @@ class extendDrawBar {
 /*
 options
 ------
-
-
 {
     union: true,
     copy: true,
@@ -322,6 +350,7 @@ options
     showArea: true
 }
 */
+
 const additionalTools = (draw, classPrefix) =>
     new extendDrawBar({
         draw,
