@@ -3,7 +3,7 @@ import Buffer from '@turf/buffer';
 import Length from '@turf/length';
 import Area from '@turf/area';
 import Centroid from '@turf/centroid';
-import CoordAll from '@turf/meta';
+import * as Meta from '@turf/meta';
 import transformTranslate from '@turf/transform-translate';
 import defaultStyle from '@mapbox/mapbox-gl-draw/src/lib/theme';
 import { events } from "@mapbox/mapbox-gl-draw/src/constants";
@@ -216,7 +216,7 @@ class extendDrawBar {
         selectedFeatures.forEach((main) => {
             if(['Point', 'MultiPoint'].includes(main.geometry.type)) return
             console.log(main.geometry)
-            let vertex = CoordAll(main.geometry);
+            let vertex = Meta.CoordAll(main.geometry);
             console.log(vertex)
             vertex.id = `${main.id}_vertex_${Math.floor(Math.random() * Math.floor(1000))}`;
             ids.push(vertex.id)
