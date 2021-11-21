@@ -3,6 +3,7 @@ import Buffer from '@turf/buffer';
 import Length from '@turf/length';
 import Area from '@turf/area';
 import Centroid from '@turf/centroid';
+import Kinks from '@turf/kinks';
 import transformTranslate from '@turf/transform-translate';
 import defaultStyle from '@mapbox/mapbox-gl-draw/src/lib/theme';
 import { events } from "@mapbox/mapbox-gl-draw/src/constants";
@@ -101,6 +102,18 @@ class extendDrawBar {
                 classes: ['mapbox-gl-draw_centroid', opt.classPrefix ? `${opt.classPrefix}-centroid` : null],
             },
             {
+                name: 'PolygonToPoints',
+                callback: this.toPoints,
+                title: `PolygonToPoints tool`,
+                classes: ['mapbox-gl-draw_poly_to_points', opt.classPrefix ? `${opt.classPrefix}-poly_to_points` : null],
+            },
+            {
+                name: 'LineToPoints',
+                callback: this.toPoints,
+                title: `LineToPoints tool`,
+                classes: ['mapbox-gl-draw_line_to_points', opt.classPrefix ? `${opt.classPrefix}-line_to_points` : null],
+            },
+            {
                 name: 'Union',
                 callback: this.unionPolygons,
                 title: `Union tool`,
@@ -187,12 +200,27 @@ class extendDrawBar {
         selectedFeatures.forEach((main) => {
             if(main.geometry.type !== 'Polygon') return
             let centroid = Centroid(main.geometry);
-            console.log({centroid})
             centroid.id = `${main.id}_centroid_${Math.floor(Math.random() * Math.floor(1000))}`;
             ids.push(centroid.id)
             centroids.push(centroid)
         })
         this.fireCreateCentroid(centroids)
+        this.draw.changeMode('simple_select', { featureIds: ids });
+    }
+
+    toPoints() {
+        const selectedFeatures = this.draw.getSelected().features;
+        if (!selectedFeatures.length) return;
+        let ids = [];
+        let vertcies = [];
+        selectedFeatures.forEach((main) => {
+            if(['Point', 'MultiPoint'].includes(main.geometry.type)) return
+            let vertex = Kinks(main.geometry);
+            vertex.id = `${main.id}_vertex_${Math.floor(Math.random() * Math.floor(1000))}`;
+            ids.push(vertex.id)
+            vertcies.push(vertex)
+        })
+        this.fireCreateVertcies(vertcies)
         this.draw.changeMode('simple_select', { featureIds: ids });
     }
 
@@ -298,6 +326,12 @@ class extendDrawBar {
     fireCreateCentroid(newF) {
         this.map.fire(events.CREATE, {
           action: 'CentroidPolygon',
+          features: newF
+        });
+    }
+    fireCreateVertcies(newF) {
+        this.map.fire(events.CREATE, {
+          action: 'toPoints',
           features: newF
         });
     }

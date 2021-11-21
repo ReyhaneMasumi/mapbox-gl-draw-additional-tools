@@ -4,6 +4,18 @@
     background-position: center;
     background-size: 60%;
 }
+.mapbox-gl-draw_poly_to_points {
+    background-image: url('./img/polygon-to-point.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+.mapbox-gl-draw_line_to_points {
+    background-image: url('./img/line-to-point.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
 .mapbox-gl-draw_union {
     background-image: url('./img/union.svg');
     background-repeat: no-repeat;
