@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import mapboxGl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { additionalTools, measurement, addToolStyle } from 'mapbox-gl-draw-additional-tools';

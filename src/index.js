@@ -1,3 +1,5 @@
+import defaultStyle from '@mapbox/mapbox-gl-draw/src/lib/theme';
+import { events } from '@mapbox/mapbox-gl-draw/src/constants';
 import Union from '@turf/union';
 import Buffer from '@turf/buffer';
 import Length from '@turf/length';
@@ -6,8 +8,6 @@ import Centroid from '@turf/centroid';
 import * as meta from '@turf/meta';
 import * as helpers from '@turf/helpers';
 import transformTranslate from '@turf/transform-translate';
-import defaultStyle from '@mapbox/mapbox-gl-draw/src/lib/theme';
-import { events } from '@mapbox/mapbox-gl-draw/src/constants';
 
 require('./index.css');
 
